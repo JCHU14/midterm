@@ -12,6 +12,7 @@ class TicketService{
         const res = await api.post('api/tickets', {eventId})
         logger.log('Bought Ticket', res.data)
         AppState.tickets.push(new Ticket(res.data))
+        AppState.activeEvent.ticketCount++
     }
 
     async getTicketsOnEvent(eventId){

@@ -10,7 +10,7 @@ export const EventSchema = new Schema({
     isCanceled: { type: Boolean, default: false },
     name: { type: String, required: true, maxLength: 75, minLength: 5 },
     location: { type: String, required: true, maxLength: 250 },
-    capacity: { type: Number, required: true, max: 500, min: 1 },
+    capacity: { type: Number, required: true, max: 500, min: 0 },
     type: { type: String, enum: ['digital', 'concert', 'convention', 'sport'], required: true, default: 'sport' },
     coverImg: { type: String, required: true, maxLength: 350 },
     creatorId: { type: Schema.Types.ObjectId, required: true, ref: 'Account' },

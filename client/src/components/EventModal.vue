@@ -13,44 +13,49 @@
 
                         <div class="mb-3">
                             <label for="coverUrl" class="form-label">coverImg</label>
-                            <input v-model="editable.coverImg" type="url" class="form-control" id="coverImg" maxlength="500"  required>
+                            <input v-model="editable.coverImg" type="url" class="form-control" id="coverImg" maxlength="500"
+                                required>
                         </div>
 
                         <div class="mb-3">
                             <label for="name" class="form-label">name</label>
-                            <input v-model="editable.name" type="text" class="form-control" id="name" maxlength="500"  required>
+                            <input v-model="editable.name" type="text" class="form-control" id="name" maxlength="500"
+                                required>
                         </div>
 
                         <div class="mb-3">
                             <label for="location" class="form-label">location</label>
-                            <input v-model="editable.location" type="text" class="form-control" id="location" maxlength="500"  required>
+                            <input v-model="editable.location" type="text" class="form-control" id="location"
+                                maxlength="500" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="capacity" class="form-label">capacity</label>
-                            <input v-model="editable.capacity" type="number" class="form-control" id="capacity" maxlength="500"  required>
+                            <input v-model="editable.capacity" type="number" class="form-control" id="capacity"
+                                maxlength="500" min="0" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="startDate" class="form-label">Start Date</label>
-                            <input v-model="editable.startDate" type="date" class="form-control" id="startDate" maxlength="500"  required>
+                            <input v-model="editable.startDate" type="date" class="form-control" id="startDate"
+                                maxlength="500" required>
                         </div>
 
-                        
+
                         <div class="mb-3">
                             <label for="type" class="form-label">Type</label>
-                            <select  required v-model="editable.type" class="form-select" name="" id="">
+                            <select required v-model="editable.type" class="form-select" name="" id="">
                                 <option :value="type" v-for="type in types" :key="type">
-                            {{ type }}
-                            </option>
+                                    {{ type }}
+                                </option>
                             </select>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label for="description" class="form-label">description</label>
-                                <textarea v-model="editable.description" maxlength="500" class="form-control" id="description" required
-                                    rows="3"></textarea>
-                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="description" class="form-label">description</label>
+                            <textarea v-model="editable.description" maxlength="500" class="form-control" id="description"
+                                required rows="3"></textarea>
+                        </div>
 
 
 

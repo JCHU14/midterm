@@ -14,6 +14,10 @@
                     <marquee class="bg-danger text-dark fs-2 canceledBox" behavior="scrolling" direction="right"><i
                             class="mdi mdi-hazard-lights"></i>Canceled<i class="mdi mdi-hazard-lights"></i></marquee>
                 </p>
+                <p v-if="activeEvent.capacity <= activeEvent.ticketCount">
+                    <marquee class="bg-danger text-dark my-2 fs-2 canceledBox" behavior="scrolling" direction="right"><i
+                            class="mdi mdi-hazard-lights"></i>Sold Out<i class="mdi mdi-hazard-lights"></i></marquee>
+                </p>
                 <p class=" text-light fs-3">{{ activeEvent.name }}</p>
                 <p class=" text-light fs-3">{{ activeEvent.location }}</p>
                 <p class="fs-4 text-light">{{ activeEvent.startDate.toLocaleDateString() }}</p>
@@ -29,13 +33,18 @@
 
             <div class="col-12 text-center bg-dark p-3">
 
-                <button v-if="account.id" :disabled="activeEvent.isCanceled" @click="buyTicket()"
-                    class="text-dark fs-3 p-1 btn btn-success text-center">
-                    <i class="mdi mdi-ticket"></i>
-                    <p>Buy Ticket</p>
-                </button>
-                <p class="text-success fs-3 my-2" v-if="ticketHolder">You have a ticket!</p>
-                <p class="text-light fs-2 m-2">{{ activeEvent.capacity - activeEvent.ticketCount }}</p>
+                <div>
+                    <p v-if="activeEvent.capacity > activeEvent.ticketCount">
+
+                        <button v-if="account.id" :disabled="activeEvent.isCanceled" @click="buyTicket()"
+                            class="text-dark fs-3 p-1 btn btn-success text-center">
+                            <i class="mdi mdi-ticket"></i>
+                            <p>Buy Ticket</p>
+                        </button>
+                    <p class="text-success fs-3 my-2" v-if="ticketHolder">You have a ticket!</p>
+                    <p class="text-light fs-2 m-2">{{ activeEvent.capacity - activeEvent.ticketCount }}</p>
+                    </p>
+                </div>
 
             </div>
 
@@ -62,7 +71,7 @@
                 <div class="row justify-content-center">
 
                     <div v-for="comment in comments" :key="comment.id"
-                        class="col-7 boxbrdr m-5 d-flex justify-content-between  bg-secondary">
+                        class="boxbrdr justify-content-between  bg-secondary">
 
                         <CommentCard :commentProp="comment" />
                     </div>
@@ -143,7 +152,6 @@ export default {
             comments: computed(() => AppState.comments),
             tickets: computed(() => AppState.tickets),
             ticketHolder: computed(() => AppState.tickets.find((ticket) => ticket.accountId == AppState.account.id)),
-
 
             async buyTicket() {
                 try {
